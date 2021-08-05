@@ -204,7 +204,7 @@ namespace auCDtect_Frontend
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "auCDtect-Fronted";
+            this.Text = "auCDtect-Frontend";
             this.Load += new System.EventHandler(this.MainFormLoad);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.lbxFilesDragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.lbxFilesDragEnter);
