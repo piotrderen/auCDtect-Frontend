@@ -284,7 +284,8 @@ namespace auCDtect_Frontend
             const string keyword1 = "This track looks like";
             const string keyword2 = "with";
             const string keyword3 = "probability";
-            const string keyword4 = "Could not qualify the source of this track";
+
+            const string unknSourceKeyword = "Could not qualify the source of this track";
                                     
             AnalyzeResult result = new AnalyzeResult();
 
@@ -300,7 +301,7 @@ namespace auCDtect_Frontend
 
                 result.PercentOfConfidence = processOutput.Substring(startIndex, length);
             }
-            else if (processOutput.Contains(keyword4))
+            else if (processOutput.Contains(unknSourceKeyword))
             {
                 result.AudioFormat = "UNKN";
             }
