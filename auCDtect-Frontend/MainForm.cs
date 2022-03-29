@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace auCDtect_Frontend
 {
@@ -23,7 +24,7 @@ namespace auCDtect_Frontend
         public MainForm()
         {
             InitializeComponent();
-            Text = programName;
+            this.Text = programName;
         }
 
         private void MainFormLoad(object sender, EventArgs e)
@@ -279,29 +280,18 @@ namespace auCDtect_Frontend
         }
 
         private static AnalyzeResult ParseProcessOutput(string processOutput)
-        {
-            int startIndex, length;
-            const string keyword1 = "This track looks like";
-            const string keyword2 = "with";
-            const string keyword3 = "probability";
+        {   
+            const string unknSourceString = "Could not qualify the source of this track";
+            Regex regExprOutput = new Regex(@"This track looks like CDDA|MPEG with probability \d{1,3}%");
 
-            const string unknSourceKeyword = "Could not qualify the source of this track";
-                                    
             AnalyzeResult result = new AnalyzeResult();
 
-            if (processOutput.Contains(keyword1) && processOutput.Contains(keyword2) && processOutput.Contains(keyword3))
+            if (regExprOutput.IsMatch(processOutput))
             {
-                startIndex = processOutput.IndexOf(keyword1) + keyword1.Length + 1;
-                length = processOutput.IndexOf(keyword2, startIndex) - startIndex - 1;
-
-                result.AudioFormat = processOutput.Substring(startIndex, length);
-
-                startIndex = processOutput.IndexOf(keyword3, startIndex + length) + keyword3.Length + 1;
-                length = processOutput.IndexOf("%", startIndex) - startIndex + 1;
-
-                result.PercentOfConfidence = processOutput.Substring(startIndex, length);
+                result.AudioFormat = GetAudioFormatFromOutput(processOutput);
+                result.PercentOfConfidence = GetPercentOfConfidenceFromOutput(processOutput);
             }
-            else if (processOutput.Contains(unknSourceKeyword))
+            else if (processOutput.Contains(unknSourceString))
             {
                 result.AudioFormat = "UNKN";
             }
@@ -311,6 +301,30 @@ namespace auCDtect_Frontend
             }
 
             return result;
+        }
+
+        private static string GetAudioFormatFromOutput(string processOutput)
+        {
+            int startIndex, length;
+            const string keywordStart = "This track looks like";
+            const string keywordEnd = "with";
+            
+            startIndex = processOutput.IndexOf(keywordStart) + keywordStart.Length + 1;
+            length = processOutput.IndexOf(keywordEnd, startIndex) - startIndex - 1;
+
+            return processOutput.Substring(startIndex, length);
+        }
+
+        private static string GetPercentOfConfidenceFromOutput(string processOutput)
+        {
+            int startIndex, length;
+            const string keywordStart = "probability";
+            const string keywordEnd = "%";
+
+            startIndex = processOutput.IndexOf(keywordStart) + keywordStart.Length + 1;
+            length = processOutput.IndexOf(keywordEnd, startIndex) - startIndex + 1;
+
+            return processOutput.Substring(startIndex, length);
         }
 
         private void BackgroundOperation()
@@ -357,7 +371,7 @@ namespace auCDtect_Frontend
         private void backgroundWorkerProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             string title = $"{programName} - Analyzing {e.UserState} : [{e.ProgressPercentage}%]";
-            Text = title;
+            this.Text = title;
         }
 
         private void backgroundWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -378,7 +392,7 @@ namespace auCDtect_Frontend
             }
 
             EnableControls(true);
-            Text = programName + " - " + status;
+            this.Text = programName + " - " + status;
         }
     }
 }
