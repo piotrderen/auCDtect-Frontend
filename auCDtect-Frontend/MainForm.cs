@@ -156,7 +156,7 @@ namespace auCDtect_Frontend
             btnExit.Enabled = enable;
             nudDetectMode.Enabled = enable;
 
-            btnStart.Text = enable ? "Start" : "Stop"; ;
+            btnStart.Text = enable ? "Start" : "Stop";
         }
 
         private void ApendResultToOutput(string fileName, AnalyzeResult result)
