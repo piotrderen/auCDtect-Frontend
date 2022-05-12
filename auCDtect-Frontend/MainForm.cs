@@ -248,7 +248,7 @@ namespace auCDtect_Frontend
                 // Process ends OK
                 if (process.ExitCode == 0)
                 {
-                    result = ParseProcessOutput(processOutput);      
+                    result = ParseProcessOkOutput(processOutput);      
                 }
                 else // process.ExitCode != 0  => Process ends with error
                 {
@@ -279,7 +279,7 @@ namespace auCDtect_Frontend
             return result;
         }
 
-        private static AnalyzeResult ParseProcessOutput(string processOutput)
+        private static AnalyzeResult ParseProcessOkOutput(string processOutput)
         {   
             const string unknSourceString = "Could not qualify the source of this track";
             Regex regExprOutput = new Regex(@"This track looks like CDDA|MPEG with probability [0-9]{1,3}%");
