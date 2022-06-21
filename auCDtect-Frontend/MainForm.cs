@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
@@ -33,7 +28,7 @@ namespace auCDtect_Frontend
             if (!isFileExist)
             {
                 string title = $"{auCDtect} not found";
-		string message = $"{auCDtect} is not found, {programName} can't be used without it. Please place {auCDtect} in tools directory";
+		        string message = $"{auCDtect} is not found, {programName} can't be used without it. Please place {auCDtect} in tools directory";
                 MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Close();
             }
