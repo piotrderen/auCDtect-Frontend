@@ -24,8 +24,8 @@ namespace auCDtect_Frontend
 
         private void MainFormLoad(object sender, EventArgs e)
         {
-            bool isFileExist = File.Exists(auCDtectPath);
-            if (!isFileExist)
+            bool fileExist = File.Exists(auCDtectPath);
+            if (!fileExist)
             {
                 string title = $"{auCDtect} not found";
                 string message = $"{auCDtect} is not found, {programName} can't be used without it. Please place {auCDtect} in tools directory";
