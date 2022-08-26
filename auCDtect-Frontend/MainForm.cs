@@ -156,15 +156,13 @@ namespace auCDtect_Frontend
 
         private void ApendResultToOutput(string fileName, AnalyzeResult result)
         {
-            if (result.Error)
+            Color color;
+            string outputText = string.Empty;
+
+            if (!result.Error) // result.Error == false
             {
-                AppendColorTextToOutput(fileName + " => Error: " + result.ErrorMessage + Environment.NewLine, Color.Red);
-            }
-            else // result.Error == false
-            {
-                Color color = SelectColorForAudioFormat(result.AudioFormat);
-                string outputText = string.Empty;
-              
+                color = SelectColorForAudioFormat(result.AudioFormat);
+                
                 switch (result.AudioFormat)
                 {
                     case "CDDA":
@@ -177,9 +175,14 @@ namespace auCDtect_Frontend
                     default:
                         outputText = fileName + " => " + result.AudioFormat + Environment.NewLine;
                         break;
-                }
-                AppendColorTextToOutput(outputText, color);
+                }   
             }
+            else // result.Error == true
+            {
+                color = Color.Red;
+                outputText = fileName + " => Error: " + result.ErrorMessage + Environment.NewLine;
+            }
+            AppendColorTextToOutput(outputText, color);
         }
 
         private static Color SelectColorForAudioFormat(string audioFormat)
