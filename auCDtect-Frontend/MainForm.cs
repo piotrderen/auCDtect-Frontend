@@ -6,6 +6,10 @@ using System.IO;
 using System.Diagnostics;
 using System.Threading;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using System.Linq;
+
+
 
 namespace auCDtect_Frontend
 {
@@ -14,7 +18,9 @@ namespace auCDtect_Frontend
         private const string auCDtect = "auCDtect.exe";
         private const string programName = "auCDtect-Frontend";
         private const string programVersion = "1.0";
-        private const string auCDtectPath = "tools/" + auCDtect; 
+        private const string auCDtectPath = "tools/" + auCDtect;
+        private static readonly string[] suportedExtensionFiles = { ".wav" };
+
 
         public MainForm()
         {
@@ -85,10 +91,14 @@ namespace auCDtect_Frontend
             }
         }
 		
+
         private void AddFileToList(string fullFileName)
         {
+            bool extentionSupported = false;
             string extension = Path.GetExtension(fullFileName);
-            if (extension == ".wav")
+
+            extentionSupported = suportedExtensionFiles.Contains(extension);
+            if (extentionSupported)
             {               
                 lbxFiles.Items.Add(fullFileName);
             }
