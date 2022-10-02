@@ -20,7 +20,11 @@ namespace auCDtect_Frontend
         private const string auCDtectPath = "tools/" + auCDtect;
         private static readonly string[] suportedExtensionFiles = { ".wav" };
         private static readonly Dictionary<string, Color> textColors = new Dictionary<string, Color> 
-            { {"CDDA", Color.Green }, {"MPEG", Color.Red }, { "UNKN", Color.Blue} };
+        {   
+            {"CDDA", Color.Green}, 
+            {"MPEG", Color.Red},
+            {"UNKN", Color.Blue} 
+        };
 
         public MainForm()
         {
@@ -55,7 +59,6 @@ namespace auCDtect_Frontend
         {
             Close();
         }
-
 
         private void lbxFilesDragDrop(object sender, DragEventArgs e)
         {
