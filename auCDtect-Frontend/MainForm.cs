@@ -8,8 +8,7 @@ using System.Threading;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Linq;
-
-
+using System.Data;
 
 namespace auCDtect_Frontend
 {
@@ -20,7 +19,8 @@ namespace auCDtect_Frontend
         private const string programVersion = "1.0";
         private const string auCDtectPath = "tools/" + auCDtect;
         private static readonly string[] suportedExtensionFiles = { ".wav" };
-
+        private static readonly Dictionary<string, Color> textColors = new Dictionary<string, Color> 
+            { {"CDDA", Color.Green }, {"MPEG", Color.Red }, { "UNKN", Color.Blue} };
 
         public MainForm()
         {
@@ -194,28 +194,10 @@ namespace auCDtect_Frontend
             }
             AppendColorTextToOutput(outputText, color);
         }
-
+       
         private static Color SelectColorForAudioFormat(string audioFormat)
         {
-            Color color;
-
-            switch (audioFormat)
-            {                          
-                case "CDDA":
-                    color = Color.Green;
-                    break;
-                case "MPEG":
-                    color = Color.Red;
-                    break;
-                case "UNKN":
-                    color = Color.Blue;
-                    break;
-                default:
-                    color = Color.Black;
-                    break;
-            }
-
-            return color;
+            return textColors[audioFormat];
         }
 
         private void AppendColorTextToOutput(string text, Color color)
