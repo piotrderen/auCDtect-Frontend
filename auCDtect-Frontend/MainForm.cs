@@ -8,7 +8,6 @@ using System.Threading;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Linq;
-using System.Data;
 
 namespace auCDtect_Frontend
 {
@@ -145,7 +144,7 @@ namespace auCDtect_Frontend
             if (btnStart.Text == "Start")
             {
                 rtbOutput.Clear();
-                EnableControls(false);
+                DisableControls();
                 backgroundWorker.RunWorkerAsync();
             }
             else // btnStart.Text == "Stop"
@@ -154,17 +153,28 @@ namespace auCDtect_Frontend
             }
         }
 
-        private void EnableControls(bool enable)
+        private void EnableControls()
         {
-            btnAddFiles.Enabled = enable;
-            btnRemoveFile.Enabled = enable;
-            btnClearList.Enabled = enable;
-            btnHelp.Enabled = enable;
-            btnAbout.Enabled = enable;
-            btnExit.Enabled = enable;
-            nudDetectMode.Enabled = enable;
+            btnAddFiles.Enabled = true;
+            btnRemoveFile.Enabled = true;
+            btnClearList.Enabled = true;
+            btnHelp.Enabled = true;
+            btnAbout.Enabled = true;
+            btnExit.Enabled = true;
+            nudDetectMode.Enabled = true;
+            btnStart.Text = "Start";
+        }
 
-            btnStart.Text = enable ? "Start" : "Stop";
+        private void DisableControls()
+        {
+            btnAddFiles.Enabled = false;
+            btnRemoveFile.Enabled = false;
+            btnClearList.Enabled = false;
+            btnHelp.Enabled = false;
+            btnAbout.Enabled = false;
+            btnExit.Enabled = false;
+            nudDetectMode.Enabled = false;
+            btnStart.Text = "Stop";
         }
 
         private void ApendResultToOutput(string fileName, AnalyzeResult result)
@@ -384,7 +394,7 @@ namespace auCDtect_Frontend
                 status = "Done";
             }
 
-            EnableControls(true);
+            EnableControls();
             this.Text = programName + " - " + status;
         }
     }
