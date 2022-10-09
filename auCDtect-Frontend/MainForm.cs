@@ -6,7 +6,6 @@ using System.IO;
 using System.Diagnostics;
 using System.Threading;
 using System.Text.RegularExpressions;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace auCDtect_Frontend
@@ -18,13 +17,7 @@ namespace auCDtect_Frontend
         private const string programVersion = "1.0";
         private const string auCDtectPath = "tools/" + auCDtect;
         private static readonly string[] suportedExtensionFiles = { ".wav" };
-        private static readonly Dictionary<string, Color> textColors = new Dictionary<string, Color> 
-        {   
-            {"CDDA", Color.Green}, 
-            {"MPEG", Color.Red},
-            {"UNKN", Color.Blue} 
-        };
-
+        
         public MainForm()
         {
             InitializeComponent();
@@ -177,42 +170,12 @@ namespace auCDtect_Frontend
             btnStart.Text = "Stop";
         }
 
-        private void ApendResultToOutput(string fileName, AnalyzeResult result)
+        private void ApendResultToOutput(AnalyzeResult result)
         {
-            Color color;
-            string outputText = string.Empty;
-
-            if (!result.Error) // result.Error == false
-            {
-                color = SelectColorForAudioFormat(result.AudioFormat);
-                
-                switch (result.AudioFormat)
-                {
-                    case "CDDA":
-                    case "MPEG":
-                        outputText = fileName + " => " + result.AudioFormat + " [" + result.PercentOfConfidence + "]" + Environment.NewLine;
-                        break;
-                    case "UNKN":
-                        outputText = fileName + " => Unknown source" + Environment.NewLine;
-                        break;
-                    default:
-                        outputText = fileName + " => " + result.AudioFormat + Environment.NewLine;
-                        break;
-                }   
-            }
-            else // result.Error == true
-            {
-                color = Color.Red;
-                outputText = fileName + " => Error: " + result.ErrorMessage + Environment.NewLine;
-            }
-            AppendColorTextToOutput(outputText, color);
+            string outputText = result.FormatResult();
+            AppendColorTextToOutput(outputText, result.TextColor);
         }
        
-        private static Color SelectColorForAudioFormat(string audioFormat)
-        {
-            return textColors[audioFormat];
-        }
-
         private void AppendColorTextToOutput(string text, Color color)
         {
             /* 
@@ -251,11 +214,11 @@ namespace auCDtect_Frontend
                 // Process ends OK
                 if (process.ExitCode == 0)
                 {
-                    result = ParseProcessOkOutput(processOutput);      
+                    result = ParseProcessOkOutput(processOutput, fileName);      
                 }
                 else // process.ExitCode != 0  => Process ends with error
                 {
-                    result = ParseProcessErrorOutput(processOutput);
+                    result = ParseProcessErrorOutput(processOutput, fileName);
                 }
 
                 process.Close();
@@ -264,43 +227,51 @@ namespace auCDtect_Frontend
             return result;
         }
 
-        private static AnalyzeResult ParseProcessErrorOutput(string processOutput)
+        private static AnalyzeResult ParseProcessErrorOutput(string processOutput, string fileName)
         {
             const string keyword = "error:";
             int startIndex;
-            AnalyzeResult result = new AnalyzeResult();
+            AnalyzeResult result;
 
             if (processOutput.Contains(keyword))
             {
                 startIndex = processOutput.IndexOf(keyword) + keyword.Length + 1;
-                result.ErrorMessage = processOutput.Substring(startIndex).TrimEnd();
+                result = new ResultError(fileName, processOutput.Substring(startIndex).TrimEnd()); 
             }
             else
             {
-                result.ErrorMessage = $"Parsing {auCDtect} output error";
+                result = new ResultError(fileName, $"Parsing {auCDtect} output error"); 
             }               
             return result;
         }
 
-        private static AnalyzeResult ParseProcessOkOutput(string processOutput)
+        private static AnalyzeResult ParseProcessOkOutput(string processOutput, string fileName)
         {   
             const string unknSourceString = "Could not qualify the source of this track";
             Regex regExprOutput = new Regex(@"This track looks like CDDA|MPEG with probability [0-9]{1,3}%");
 
-            AnalyzeResult result = new AnalyzeResult();
+            AnalyzeResult result;
 
             if (regExprOutput.IsMatch(processOutput))
             {
-                result.AudioFormat = GetAudioFormatFromOutput(processOutput);
-                result.PercentOfConfidence = GetPercentOfConfidenceFromOutput(processOutput);
+                string confidence = GetPercentOfConfidenceFromOutput(processOutput);
+
+                if (GetAudioFormatFromOutput(processOutput) == "CDDA")
+                {
+                    result = new ResultCDDA(fileName, confidence);
+                }
+                else
+                {
+                    result = new ResultMPEG(fileName, confidence);
+                } 
             }
             else if (processOutput.Contains(unknSourceString))
             {
-                result.AudioFormat = "UNKN";
+                result = new ResultUnknown(fileName);
             }
             else
             {
-                result.ErrorMessage = $"Parsing {auCDtect} output error";
+                result = new ResultError(fileName, $"Parsing {auCDtect} output error");
             }
 
             return result;
@@ -349,7 +320,7 @@ namespace auCDtect_Frontend
                 result = AnalyzeFile(detectMode, fullFileName);
                 fileName = Path.GetFileName(fullFileName);
 
-                ApendResultToOutput(fileName, result);         
+                ApendResultToOutput(result);         
             }
         }
 

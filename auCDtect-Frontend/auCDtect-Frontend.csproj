@@ -59,6 +59,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResultCDDA.cs" />
+    <Compile Include="ResultError.cs" />
+    <Compile Include="ResultMPEG.cs" />
+    <Compile Include="ResultUnknown.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
