@@ -228,15 +228,16 @@ namespace auCDtect_Frontend
             const string keyword = "error:";
             int startIndex;
             AnalyzeResult result;
+            string file = Path.GetFileName(fileName);
 
             if (processOutput.Contains(keyword))
             {
                 startIndex = processOutput.IndexOf(keyword) + keyword.Length + 1;
-                result = new ResultError(fileName, processOutput.Substring(startIndex).TrimEnd()); 
+                result = new ResultError(file, processOutput.Substring(startIndex).TrimEnd()); 
             }
             else
             {
-                result = new ResultError(fileName, $"Parsing {auCDtect} output error"); 
+                result = new ResultError(file, $"Parsing {auCDtect} output error"); 
             }               
             return result;
         }
@@ -247,27 +248,28 @@ namespace auCDtect_Frontend
             Regex regExprOutput = new Regex(@"This track looks like CDDA|MPEG with probability [0-9]{1,3}%");
 
             AnalyzeResult result;
+            string file = Path.GetFileName(fileName);
 
             if (regExprOutput.IsMatch(processOutput))
             {
                 string confidence = GetPercentOfConfidenceFromOutput(processOutput);
-
+               
                 if (GetAudioFormatFromOutput(processOutput) == "CDDA")
                 {
-                    result = new ResultCDDA(fileName, confidence);
+                    result = new ResultCDDA(file, confidence);
                 }
                 else
                 {
-                    result = new ResultMPEG(fileName, confidence);
+                    result = new ResultMPEG(file, confidence);
                 } 
             }
             else if (processOutput.Contains(unknSourceString))
             {
-                result = new ResultUnknown(fileName);
+                result = new ResultUnknown(file);
             }
             else
             {
-                result = new ResultError(fileName, $"Parsing {auCDtect} output error");
+                result = new ResultError(file, $"Parsing {auCDtect} output error");
             }
 
             return result;

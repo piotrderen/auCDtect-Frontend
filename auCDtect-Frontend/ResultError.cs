@@ -16,7 +16,7 @@ namespace auCDtect_Frontend
         public ResultError(string file, string errorMassage)
         {
             this.errorMessage = errorMassage;
-            this.fileName = Path.GetFileName(file);
+            this.fileName = file;
         }
         public override string FormatResult()
         {

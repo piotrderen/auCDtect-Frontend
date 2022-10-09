@@ -10,7 +10,7 @@ namespace auCDtect_Frontend
 
         public ResultUnknown(string file)
         {
-            this.fileName = Path.GetFileName(file);
+            this.fileName = file;
         }
 
         public override string FormatResult()

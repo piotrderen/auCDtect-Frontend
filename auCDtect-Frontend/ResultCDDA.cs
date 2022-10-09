@@ -13,7 +13,7 @@ namespace auCDtect_Frontend
         public ResultCDDA(string file, string percentOfConfidence)
         {
             this.percentOfConfidence = percentOfConfidence;
-            this.fileName = Path.GetFileName(file);
+            fileName = file;
         }
 
         public override string FormatResult()

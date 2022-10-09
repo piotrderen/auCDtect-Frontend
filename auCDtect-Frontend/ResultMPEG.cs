@@ -17,7 +17,7 @@ namespace auCDtect_Frontend
         public ResultMPEG(string file, string percentOfConfidence)
         {
             this.percentOfConfidence = percentOfConfidence;
-            this.fileName = Path.GetFileName(file);
+            this.fileName = file;
         }
 
         public override string FormatResult()
