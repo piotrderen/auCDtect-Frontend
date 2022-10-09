@@ -172,12 +172,8 @@ namespace auCDtect_Frontend
 
         private void ApendResultToOutput(AnalyzeResult result)
         {
-            string outputText = result.FormatResult();
-            AppendColorTextToOutput(outputText, result.TextColor);
-        }
-       
-        private void AppendColorTextToOutput(string text, Color color)
-        {
+            string text = result.FormatResult();
+            Color color = result.TextColor;
             /* 
              Must be like below because: 
              System.InvalidOperationException: 'Invalid cross-thread operation: The control 
