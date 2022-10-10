@@ -253,12 +253,13 @@ namespace auCDtect_Frontend
             if (regExprOutput.IsMatch(processOutput))
             {
                 string confidence = GetPercentOfConfidenceFromOutput(processOutput);
-               
-                if (GetAudioFormatFromOutput(processOutput) == "CDDA")
+                string audioFormat = GetAudioFormatFromOutput(processOutput);
+
+                if (audioFormat == "CDDA")
                 {
                     result = new ResultCDDA(file, confidence);
                 }
-                else
+                else // audioFormat == "MPEG"
                 {
                     result = new ResultMPEG(file, confidence);
                 } 
