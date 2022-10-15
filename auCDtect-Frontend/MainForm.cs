@@ -89,11 +89,11 @@ namespace auCDtect_Frontend
 
         private void AddFileToList(string fullFileName)
         {
-            bool extentionSupported = false;
+            bool extentionSuported = false;
             string extension = Path.GetExtension(fullFileName);
 
-            extentionSupported = suportedExtensionFiles.Contains(extension);
-            if (extentionSupported)
+            extentionSuported = suportedExtensionFiles.Contains(extension);
+            if (extentionSuported)
             {               
                 lbxFiles.Items.Add(fullFileName);
             }
