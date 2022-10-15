@@ -229,16 +229,19 @@ namespace auCDtect_Frontend
             int startIndex;
             AnalyzeResult result;
             string file = Path.GetFileName(fileName);
+            string errorMessage;
 
             if (processOutput.Contains(keyword))
             {
                 startIndex = processOutput.IndexOf(keyword) + keyword.Length + 1;
-                result = new ResultError(file, processOutput.Substring(startIndex).TrimEnd()); 
+                errorMessage = processOutput.Substring(startIndex).TrimEnd();
             }
             else
             {
-                result = new ResultError(file, $"Parsing {auCDtect} output error"); 
-            }               
+                errorMessage = $"Parsing {auCDtect} output error"; 
+            }
+
+            result = new ResultError(file, errorMessage); 
             return result;
         }
 
