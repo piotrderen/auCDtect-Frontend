@@ -16,7 +16,7 @@ namespace auCDtect_Frontend
         private const string programName = "auCDtect-Frontend";
         private const string programVersion = "1.0";
         private const string auCDtectPath = "tools/" + auCDtect;
-        private static readonly string[] suportedExtensionFiles = { ".wav" };
+        private static readonly string[] supportedExtensionFiles = { ".wav" };
         
         public MainForm()
         {
@@ -92,7 +92,7 @@ namespace auCDtect_Frontend
             bool extentionSupported = false;
             string extension = Path.GetExtension(fullFileName);
 
-            extentionSupported = suportedExtensionFiles.Contains(extension);
+            extentionSupported = supportedExtensionFiles.Contains(extension);
             if (extentionSupported)
             {               
                 lbxFiles.Items.Add(fullFileName);
