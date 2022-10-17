@@ -240,8 +240,8 @@ namespace auCDtect_Frontend
             {
                 errorMessage = $"Parsing {auCDtect} output error"; 
             }
-
             result = new ResultError(file, errorMessage); 
+
             return result;
         }
 
@@ -305,7 +305,7 @@ namespace auCDtect_Frontend
 
         private void BackgroundOperation()
         {
-            string fullFileName, fileName;
+            string fullFileName;
             int count = lbxFiles.Items.Count;
             int detectMode = (int)nudDetectMode.Value;
             AnalyzeResult result;
@@ -320,7 +320,6 @@ namespace auCDtect_Frontend
 
                 fullFileName = (string)lbxFiles.Items[i];
                 result = AnalyzeFile(detectMode, fullFileName);
-                fileName = Path.GetFileName(fullFileName);
 
                 ApendResultToOutput(result);         
             }
