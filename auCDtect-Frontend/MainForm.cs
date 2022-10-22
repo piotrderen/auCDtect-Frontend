@@ -308,7 +308,7 @@ namespace auCDtect_Frontend
             int count = lbxFiles.Items.Count;
             int detectMode = (int)nudDetectMode.Value;
             AnalyzeResult result;
-            string userState = null;
+            string userState;
                                     
             for (int i = 0; i < count; i++)
             {
