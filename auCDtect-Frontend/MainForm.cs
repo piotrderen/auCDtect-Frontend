@@ -100,7 +100,7 @@ namespace auCDtect_Frontend
 
         private void btnAboutClick(object sender, EventArgs e)
         {
-            string title = $"{programName} version info";
+            string title = $"{programName} version information";
             string message = $"{programName} v{programVersion}, using {auCDtect} 0.8.2";
             MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
