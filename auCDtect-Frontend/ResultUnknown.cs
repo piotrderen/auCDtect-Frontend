@@ -10,7 +10,7 @@ namespace auCDtect_Frontend
 
         public ResultUnknown(string file)
         {
-            fileName = file;
+            base.fileName = file;
         }
 
         public override string FormatResult()
