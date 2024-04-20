@@ -17,11 +17,42 @@ namespace auCDtect_Frontend
         private const string programVersion = "1.0";
         private const string auCDtectPath = "tools/" + auCDtect;
         private static readonly string[] supportedExtensionFiles = { ".wav" };
-        
-        public MainForm()
+
+    public MainForm()
         {
             InitializeComponent();
             this.Text = programName;
+            openFileDialog.Filter = buildDialogFilterFromArray();
+        }
+
+        private string buildDialogFilterFromArray()
+        {
+            string retVal = string.Empty;
+            retVal = "Music files (";
+            string extensionString = suportedExtensionsString();
+            retVal += extensionString;
+            retVal += ")|";
+            retVal += extensionString;
+            retVal += "|";
+            retVal += "All files(*.*)|*.* ";
+
+            return retVal;
+        }
+        private string suportedExtensionsString()
+        {
+            int length = supportedExtensionFiles.Length;
+            string retVal = string.Empty;
+
+            for (int i = 0; i < length; ++i)
+            {
+                retVal += $"*{supportedExtensionFiles[i]}";
+
+                if (i < length - 1)
+                {
+                    retVal += ";";
+                }
+            }
+            return retVal;
         }
 
         private void MainFormLoad(object sender, EventArgs e)
