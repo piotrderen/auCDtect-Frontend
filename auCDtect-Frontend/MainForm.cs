@@ -18,7 +18,7 @@ namespace auCDtect_Frontend
         private const string auCDtectPath = "tools/" + auCDtect;
         private static readonly string[] supportedExtensionFiles = { ".wav" };
 
-    public MainForm()
+        public MainForm()
         {
             InitializeComponent();
             this.Text = programName;
