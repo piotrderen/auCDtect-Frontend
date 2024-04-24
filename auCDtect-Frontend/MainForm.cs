@@ -22,10 +22,10 @@ namespace auCDtect_Frontend
         {
             InitializeComponent();
             this.Text = programName;
-            openFileDialog.Filter = buildDialogFilterFromArray();
+            openFileDialog.Filter = buildOpenFileDialogFilter();
         }
 
-        private string buildDialogFilterFromArray()
+        private string buildOpenFileDialogFilter()
         {
             string retVal = string.Empty;
             retVal = "Music files (";
@@ -204,12 +204,7 @@ namespace auCDtect_Frontend
         {
             string text = result.FormatResult();
             Color color = result.TextColor;
-            /* 
-             Must be like below because: 
-             System.InvalidOperationException: 'Invalid cross-thread operation: The control 
-             is being accessed from a thread other than the thread on which it was created.'
-             Call BeginInvoke method here below is required
-            */
+
             rtbOutput.SuspendLayout();
             Action action = () => {
                 rtbOutput.SelectionColor = color;
