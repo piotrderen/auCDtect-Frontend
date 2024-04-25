@@ -34,7 +34,7 @@ namespace auCDtect_Frontend
             retVal += ")|";
             retVal += extensionString;
             retVal += "|";
-            retVal += "All files(*.*)|*.* ";
+            retVal += "All files(*.*)|*.*";
 
             return retVal;
         }
