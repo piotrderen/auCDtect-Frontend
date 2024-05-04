@@ -280,8 +280,8 @@ namespace auCDtect_Frontend
 
             if (regExprOutput.IsMatch(processOutput))
             {
-                string confidence = GetPercentOfConfidenceFromOutput(processOutput);
-                string audioFormat = GetAudioFormatFromOutput(processOutput);
+                string confidence = GetPercentOfConfidence(processOutput);
+                string audioFormat = GetAudioFormat(processOutput);
 
                 if (audioFormat == "CDDA")
                 {
@@ -304,7 +304,7 @@ namespace auCDtect_Frontend
             return result;
         }
 
-        private static string GetAudioFormatFromOutput(string processOutput)
+        private static string GetAudioFormat(string processOutput)
         {
             int startIndex, length;
             const string keywordStart = "This track looks like";
@@ -316,7 +316,7 @@ namespace auCDtect_Frontend
             return processOutput.Substring(startIndex, length);
         }
 
-        private static string GetPercentOfConfidenceFromOutput(string processOutput)
+        private static string GetPercentOfConfidence(string processOutput)
         {
             int startIndex, length;
             const string keywordStart = "probability";
