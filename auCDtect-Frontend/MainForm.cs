@@ -185,6 +185,7 @@ namespace auCDtect_Frontend
             btnAbout.Enabled = true;
             btnExit.Enabled = true;
             nudDetectMode.Enabled = true;
+            rtbOutput.Enabled = true;
             btnStart.Text = "Start";
         }
 
@@ -197,6 +198,7 @@ namespace auCDtect_Frontend
             btnAbout.Enabled = false;
             btnExit.Enabled = false;
             nudDetectMode.Enabled = false;
+            rtbOutput.Enabled = false;
             btnStart.Text = "Stop";
         }
 
