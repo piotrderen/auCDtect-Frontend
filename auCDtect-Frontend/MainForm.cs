@@ -248,28 +248,7 @@ namespace auCDtect_Frontend
             return result;
         }
 
-        private static AnalyzeResult ParseProcessErrorOutput(string processOutput, string fileName)
-        {
-            const string keyword = "error:";
-            int startIndex;
-            AnalyzeResult result;
-            string file = Path.GetFileName(fileName);
-            string errorMessage;
-
-            if (processOutput.Contains(keyword))
-            {
-                startIndex = processOutput.IndexOf(keyword) + keyword.Length + 1;
-                errorMessage = processOutput.Substring(startIndex).TrimEnd();
-            }
-            else
-            {
-                errorMessage = $"Parsing {auCDtect} output error"; 
-            }
-            result = new ResultError(file, errorMessage); 
-
-            return result;
-        }
-
+     
         private static AnalyzeResult ParseProcessOkOutput(string processOutput, string fileName)
         {   
             const string unknSourceString = "Could not qualify the source of this track";
@@ -303,6 +282,29 @@ namespace auCDtect_Frontend
 
             return result;
         }
+
+        private static AnalyzeResult ParseProcessErrorOutput(string processOutput, string fileName)
+        {
+            const string keyword = "error:";
+            int startIndex;
+            AnalyzeResult result;
+            string file = Path.GetFileName(fileName);
+            string errorMessage;
+
+            if (processOutput.Contains(keyword))
+            {
+                startIndex = processOutput.IndexOf(keyword) + keyword.Length + 1;
+                errorMessage = processOutput.Substring(startIndex).TrimEnd();
+            }
+            else
+            {
+                errorMessage = $"Parsing {auCDtect} output error";
+            }
+            result = new ResultError(file, errorMessage);
+
+            return result;
+        }
+
 
         private static string GetAudioFormat(string processOutput)
         {
