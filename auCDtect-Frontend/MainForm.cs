@@ -25,7 +25,7 @@ namespace auCDtect_Frontend
             openFileDialog.Filter = buildOpenFileDialogFilter();
         }
 
-        private string buildOpenFileDialogFilter()
+        private static string buildOpenFileDialogFilter()
         {
             string retVal = string.Empty;
             retVal = "Music files (";
@@ -38,7 +38,7 @@ namespace auCDtect_Frontend
 
             return retVal;
         }
-        private string suportedExtensionsString()
+        private static string suportedExtensionsString()
         {
             int length = supportedExtensionFiles.Length;
             string retVal = string.Empty;
