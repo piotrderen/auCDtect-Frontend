@@ -5,8 +5,8 @@ namespace auCDtect_Frontend
 {
     public class ResultError : AnalyzeResult
     {
-        private static Color textColor = Color.Red;
-        private string errorMessage;
+        private readonly Color textColor = Color.Red;
+        private readonly string errorMessage;
 
         public ResultError(string file, string errorMassage)
         {
