@@ -237,11 +237,11 @@ namespace auCDtect_Frontend
                 // Process ends OK
                 if (process.ExitCode == 0)
                 {
-                    result = ParseProcessOkOutput(processOutput, fileName);      
+                    result = ParseProcessOkOutput(fileName, processOutput);      
                 }
                 else // process.ExitCode != 0  => Process ends with error
                 {
-                    result = ParseProcessErrorOutput(processOutput, fileName);
+                    result = ParseProcessErrorOutput(fileName, processOutput);
                 }
 
                 process.Close();
@@ -251,9 +251,9 @@ namespace auCDtect_Frontend
         }
 
      
-        private static AnalyzeResult ParseProcessOkOutput(string processOutput, string fileName)
+        private static AnalyzeResult ParseProcessOkOutput(string fileName, string processOutput)
         {   
-            const string unknSourceString = "Could not qualify the source of this track";
+            const string unknownSourceString = "Could not qualify the source of this track";
             Regex regExprOutput = new Regex(@"This track looks like CDDA|MPEG with probability [0-9]{1,3}%");
 
             AnalyzeResult result;
@@ -273,7 +273,7 @@ namespace auCDtect_Frontend
                     result = new ResultMPEG(file, confidence);
                 } 
             }
-            else if (processOutput.Contains(unknSourceString))
+            else if (processOutput.Contains(unknownSourceString))
             {
                 result = new ResultUnknown(file);
             }
@@ -285,7 +285,7 @@ namespace auCDtect_Frontend
             return result;
         }
 
-        private static AnalyzeResult ParseProcessErrorOutput(string processOutput, string fileName)
+        private static AnalyzeResult ParseProcessErrorOutput(string fileName, string processOutput)
         {
             const string keyword = "error:";
             int startIndex;
