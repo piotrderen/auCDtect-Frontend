@@ -168,6 +168,7 @@ namespace auCDtect_Frontend
             {
                 rtbOutput.Clear();
                 DisableControls();
+                btnStart.Text = "Stop";
                 backgroundWorker.RunWorkerAsync();
             }
             else // btnStart.Text == "Stop"
@@ -186,7 +187,7 @@ namespace auCDtect_Frontend
             btnExit.Enabled = true;
             nudDetectMode.Enabled = true;
             rtbOutput.Enabled = true;
-            btnStart.Text = "Start";
+            //btnStart.Text = "Start";
         }
 
         private void DisableControls()
@@ -199,7 +200,7 @@ namespace auCDtect_Frontend
             btnExit.Enabled = false;
             nudDetectMode.Enabled = false;
             rtbOutput.Enabled = false;
-            btnStart.Text = "Stop";
+            //btnStart.Text = "Stop";
         }
 
         private void ApendResultToOutput(AnalyzeResult result)
@@ -396,6 +397,8 @@ namespace auCDtect_Frontend
             }
 
             EnableControls();
+            btnStart.Text = "Start";
+
             this.Text = programName + " - " + status;
         }
     }
