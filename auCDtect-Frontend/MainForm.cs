@@ -167,7 +167,7 @@ namespace auCDtect_Frontend
             if (btnStart.Text == "Start")
             {
                 rtbOutput.Clear();
-                DisableControls();
+                SetEnabledControls(false);
                 btnStart.Text = "Stop";
                 backgroundWorker.RunWorkerAsync();
             }
@@ -177,30 +177,16 @@ namespace auCDtect_Frontend
             }
         }
 
-        private void EnableControls()
+        private void SetEnabledControls(bool enable)
         {
-            btnAddFiles.Enabled = true;
-            btnRemoveFile.Enabled = true;
-            btnClearList.Enabled = true;
-            btnHelp.Enabled = true;
-            btnAbout.Enabled = true;
-            btnExit.Enabled = true;
-            nudDetectMode.Enabled = true;
-            rtbOutput.Enabled = true;
-            //btnStart.Text = "Start";
-        }
-
-        private void DisableControls()
-        {
-            btnAddFiles.Enabled = false;
-            btnRemoveFile.Enabled = false;
-            btnClearList.Enabled = false;
-            btnHelp.Enabled = false;
-            btnAbout.Enabled = false;
-            btnExit.Enabled = false;
-            nudDetectMode.Enabled = false;
-            rtbOutput.Enabled = false;
-            //btnStart.Text = "Stop";
+            btnAddFiles.Enabled = enable;
+            btnRemoveFile.Enabled = enable;
+            btnClearList.Enabled = enable;
+            btnHelp.Enabled = enable;
+            btnAbout.Enabled = enable;
+            btnExit.Enabled = enable;
+            nudDetectMode.Enabled = enable;
+            rtbOutput.Enabled = enable;
         }
 
         private void ApendResultToOutput(AnalyzeResult result)
@@ -396,7 +382,7 @@ namespace auCDtect_Frontend
                 status = "Done";
             }
 
-            EnableControls();
+            SetEnabledControls(true);
             btnStart.Text = "Start";
 
             this.Text = programName + " - " + status;
