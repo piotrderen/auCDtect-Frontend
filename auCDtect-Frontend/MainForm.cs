@@ -177,16 +177,16 @@ namespace auCDtect_Frontend
             }
         }
 
-        private void SetEnabledControls(bool enable)
+        private void SetEnabledControls(bool enabled)
         {
-            btnAddFiles.Enabled = enable;
-            btnRemoveFile.Enabled = enable;
-            btnClearList.Enabled = enable;
-            btnHelp.Enabled = enable;
-            btnAbout.Enabled = enable;
-            btnExit.Enabled = enable;
-            nudDetectMode.Enabled = enable;
-            rtbOutput.Enabled = enable;
+            btnAddFiles.Enabled = enabled;
+            btnRemoveFile.Enabled = enabled;
+            btnClearList.Enabled = enabled;
+            btnHelp.Enabled = enabled;
+            btnAbout.Enabled = enabled;
+            btnExit.Enabled = enabled;
+            nudDetectMode.Enabled = enabled;
+            rtbOutput.Enabled = enabled;
         }
 
         private void ApendResultToOutput(AnalyzeResult result)
