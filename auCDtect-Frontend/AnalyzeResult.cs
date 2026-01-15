@@ -7,5 +7,6 @@ namespace auCDtect_Frontend
         protected string fileName;
         public abstract string FormatResult();
         public abstract Color TextColor { get; }
+
     }
 }
