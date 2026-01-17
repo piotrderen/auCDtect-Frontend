@@ -8,9 +8,9 @@ namespace auCDtect_Frontend
         private readonly Color textColor = Color.Red;
         private readonly string errorMessage;
 
-        public ResultError(string file, string errorMassage)
+        public ResultError(string file, string errorMessage)
         {
-            this.errorMessage = errorMassage;
+            this.errorMessage = errorMessage;
             base.fileName = file;
         }
         public override string FormatResult()
