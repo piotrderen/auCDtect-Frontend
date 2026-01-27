@@ -72,7 +72,7 @@ namespace auCDtect_Frontend
             // ClearList
             // 
             this.ClearList.Location = new System.Drawing.Point(171, 6);
-            this.ClearList.Name = "btnClearList";
+            this.ClearList.Name = "ClearList";
             this.ClearList.Size = new System.Drawing.Size(75, 23);
             this.ClearList.TabIndex = 2;
             this.ClearList.Text = "Clear filelist";
