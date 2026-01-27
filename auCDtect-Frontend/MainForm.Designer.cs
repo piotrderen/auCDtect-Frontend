@@ -133,7 +133,7 @@ namespace auCDtect_Frontend
             this.toolTip.SetToolTip(this.Output, "The results of the analysis");
             this.Output.WordWrap = false;
             // 
-            // btnHelp
+            // Help
             // 
             this.Help.Location = new System.Drawing.Point(9, 389);
             this.Help.Name = "Help";
