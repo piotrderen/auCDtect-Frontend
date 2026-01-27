@@ -95,7 +95,7 @@ namespace auCDtect_Frontend
             // 
             this.DetectModeLabel.AutoSize = true;
             this.DetectModeLabel.Location = new System.Drawing.Point(6, 231);
-            this.DetectModeLabel.Name = "lblDetectMode";
+            this.DetectModeLabel.Name = "DetectModeLabel";
             this.DetectModeLabel.Size = new System.Drawing.Size(71, 13);
             this.DetectModeLabel.TabIndex = 4;
             this.DetectModeLabel.Text = "Detect mode:";
@@ -105,7 +105,7 @@ namespace auCDtect_Frontend
             // 
             this.DetectMode.Location = new System.Drawing.Point(79, 229);
             this.DetectMode.Maximum = new decimal(new int[] { 40, 0, 0, 0 });
-            this.DetectMode.Name = "nudDetectMode";
+            this.DetectMode.Name = "DetectMode";
             this.DetectMode.Size = new System.Drawing.Size(55, 20);
             this.DetectMode.TabIndex = 5;
             this.toolTip.SetToolTip(this.DetectMode, "0 - slow and most accurate\n40 - fast, but less accurate");
