@@ -22,14 +22,14 @@ namespace auCDtect_Frontend
         {
             InitializeComponent();
             this.Text = programName;
-            openFileDialog.Filter = buildOpenFileDialogFilter();
+            openFileDialog.Filter = BuildOpenFileDialogFilter();
         }
 
-        private static string buildOpenFileDialogFilter()
+        private static string BuildOpenFileDialogFilter()
         {
             string retVal = string.Empty;
             retVal = "Music files (";
-            string extensionString = suportedExtensionsString();
+            string extensionString = SuportedExtensionsString();
             retVal += extensionString;
             retVal += ")|";
             retVal += extensionString;
@@ -38,7 +38,7 @@ namespace auCDtect_Frontend
 
             return retVal;
         }
-        private static string suportedExtensionsString()
+        private static string SuportedExtensionsString()
         {
             int length = supportedExtensionFiles.Length;
             string retVal = string.Empty;
@@ -67,7 +67,7 @@ namespace auCDtect_Frontend
             }
         }
 
-        private void btnAddFilesClick(object sender, EventArgs e)
+        private void AddFilesClick(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -78,12 +78,12 @@ namespace auCDtect_Frontend
             }
         }
 
-        private void btnExitClick(object sender, EventArgs e)
+        private void ExitClick(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void lbxFilesDragDrop(object sender, DragEventArgs e)
+        private void FilesDragDrop(object sender, DragEventArgs e)
         {
             string[] fileDropList = (string[]) e.Data.GetData(DataFormats.FileDrop);
           
@@ -105,7 +105,7 @@ namespace auCDtect_Frontend
             }
         }
         
-        private void lbxFilesDragEnter(object sender, DragEventArgs e)
+        private void FilesDragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
@@ -124,26 +124,26 @@ namespace auCDtect_Frontend
             bool extentionSupported = supportedExtensionFiles.Contains(extension);
 
             if (extentionSupported)
-            {               
-                lbxFiles.Items.Add(fullFileName);
+            {
+                FileList.Items.Add(fullFileName);
             }
         }
 
-        private void btnAboutClick(object sender, EventArgs e)
+        private void AboutClick(object sender, EventArgs e)
         {
             string title = $"{programName} version information";
             string message = $"{programName} ver {programVersion}, using {auCDtect} 0.8.2";
             MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void btnHelpClick(object sender, EventArgs e)
+        private void HelpClick(object sender, EventArgs e)
         {
             string title = $"{programName} Help";
             string message = "Place your mouse pointer over a control to get more information";
             MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void btnRemoveFileClick(object sender, EventArgs e)
+        private void RemoveFileClick(object sender, EventArgs e)
         {
             /*
             for (int i = lstbxFiles.SelectedItems.Count - 1; i > -1; i--)
@@ -151,27 +151,27 @@ namespace auCDtect_Frontend
                 lstbxFiles.Items.Remove(lstbxFiles.SelectedItems[i]);
             }
             */
-            while (lbxFiles.SelectedItems.Count > 0)
+            while (FileList.SelectedItems.Count > 0)
             {
-                lbxFiles.Items.Remove(lbxFiles.SelectedItems[0]);
+                FileList.Items.Remove(FileList.SelectedItems[0]);
             }
         }
 
-        private void btnClearListClick(object sender, EventArgs e)
+        private void ClearListClick(object sender, EventArgs e)
         {
-            lbxFiles.Items.Clear();
+            FileList.Items.Clear();
         }
 
-        private void btnStartClick(object sender, EventArgs e)
+        private void StartClick(object sender, EventArgs e)
         {
-            if (btnStart.Text == "Start")
+            if (Start.Text == "Start")
             {
-                rtbOutput.Clear();
+                Output.Clear();
                 SetEnabledControls(false);
-                btnStart.Text = "Stop";
+                Start.Text = "Stop";
                 backgroundWorker.RunWorkerAsync();
             }
-            else // btnStart.Text == "Stop"
+            else // Start.Text == "Stop"
             {
                 backgroundWorker.CancelAsync();
             }
@@ -179,14 +179,14 @@ namespace auCDtect_Frontend
 
         private void SetEnabledControls(bool enabled)
         {
-            btnAddFiles.Enabled = enabled;
-            btnRemoveFile.Enabled = enabled;
-            btnClearList.Enabled = enabled;
-            btnHelp.Enabled = enabled;
-            btnAbout.Enabled = enabled;
-            btnExit.Enabled = enabled;
-            nudDetectMode.Enabled = enabled;
-            rtbOutput.Enabled = enabled;
+            AddFiles.Enabled = enabled;
+            RemoveFile.Enabled = enabled;
+            ClearList.Enabled = enabled;
+            Help.Enabled = enabled;
+            About.Enabled = enabled;
+            Exit.Enabled = enabled;
+            DetectMode.Enabled = enabled;
+            Output.Enabled = enabled;
         }
 
         private void ApendResultToOutput(AnalyzeResult result)
@@ -194,14 +194,14 @@ namespace auCDtect_Frontend
             string text = result.FormatResult();
             Color color = result.TextColor;
 
-            rtbOutput.SuspendLayout();
+            Output.SuspendLayout();
             Action action = () => {
-                rtbOutput.SelectionColor = color;
-                rtbOutput.AppendText(text);
-                rtbOutput.ScrollToCaret();
+                Output.SelectionColor = color;
+                Output.AppendText(text);
+                Output.ScrollToCaret();
             };
             this.BeginInvoke(action);  
-            rtbOutput.ResumeLayout();   
+            Output.ResumeLayout();   
         }
 
         private static AnalyzeResult AnalyzeFile(int detectMode, string fileName)
@@ -322,8 +322,8 @@ namespace auCDtect_Frontend
         private void BackgroundOperation()
         {
             string fullFileName;
-            int count = lbxFiles.Items.Count;
-            int detectMode = (int)nudDetectMode.Value;
+            int count = FileList.Items.Count;
+            int detectMode = (int)DetectMode.Value;
             AnalyzeResult result;
             string userState;
                                     
@@ -334,14 +334,14 @@ namespace auCDtect_Frontend
                 // Raises backgroundWorkerProgressChanged Event
                 backgroundWorker.ReportProgress((i*100)/count, userState);
 
-                fullFileName = (string)lbxFiles.Items[i];
+                fullFileName = (string)FileList.Items[i];
                 result = AnalyzeFile(detectMode, fullFileName);
 
                 ApendResultToOutput(result);         
             }
         }
 
-        private void backgroundWorkerDoWork(object sender, DoWorkEventArgs e)
+        private void BackgroundWorkerDoWork(object sender, DoWorkEventArgs e)
         {
             Thread childThread = new Thread(new ThreadStart(BackgroundOperation));
             childThread.Start();
@@ -359,13 +359,13 @@ namespace auCDtect_Frontend
 
         }
 
-        private void backgroundWorkerProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void BackgroundWorkerProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             string title = $"{programName} - Analyzing {e.UserState} : [{e.ProgressPercentage}%]";
             this.Text = title;
         }
 
-        private void backgroundWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void BackgroundWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             string status;
             
@@ -383,7 +383,7 @@ namespace auCDtect_Frontend
             }
 
             SetEnabledControls(true);
-            btnStart.Text = "Start";
+            Start.Text = "Start";
 
             this.Text = programName + " - " + status;
         }

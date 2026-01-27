@@ -30,141 +30,141 @@ namespace auCDtect_Frontend
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnAddFiles = new System.Windows.Forms.Button();
-            this.btnRemoveFile = new System.Windows.Forms.Button();
-            this.btnClearList = new System.Windows.Forms.Button();
-            this.lbxFiles = new System.Windows.Forms.ListBox();
-            this.lblDetectMode = new System.Windows.Forms.Label();
-            this.nudDetectMode = new System.Windows.Forms.NumericUpDown();
-            this.btnStart = new System.Windows.Forms.Button();
-            this.rtbOutput = new System.Windows.Forms.RichTextBox();
-            this.btnHelp = new System.Windows.Forms.Button();
-            this.btnAbout = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
+            this.AddFiles = new System.Windows.Forms.Button();
+            this.RemoveFile = new System.Windows.Forms.Button();
+            this.ClearList = new System.Windows.Forms.Button();
+            this.FileList = new System.Windows.Forms.ListBox();
+            this.DetectModeLabel = new System.Windows.Forms.Label();
+            this.DetectMode = new System.Windows.Forms.NumericUpDown();
+            this.Start = new System.Windows.Forms.Button();
+            this.Output = new System.Windows.Forms.RichTextBox();
+            this.Help = new System.Windows.Forms.Button();
+            this.About = new System.Windows.Forms.Button();
+            this.Exit = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            ((System.ComponentModel.ISupportInitialize)(this.nudDetectMode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DetectMode)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnAddFiles
+            // AddFiles
             // 
-            this.btnAddFiles.Location = new System.Drawing.Point(9, 6);
-            this.btnAddFiles.Name = "btnAddFiles";
-            this.btnAddFiles.Size = new System.Drawing.Size(75, 23);
-            this.btnAddFiles.TabIndex = 0;
-            this.btnAddFiles.Text = "Add files";
-            this.toolTip.SetToolTip(this.btnAddFiles, "Add files for analysis");
-            this.btnAddFiles.UseVisualStyleBackColor = true;
-            this.btnAddFiles.Click += new System.EventHandler(this.btnAddFilesClick);
+            this.AddFiles.Location = new System.Drawing.Point(9, 6);
+            this.AddFiles.Name = "AddFiles";
+            this.AddFiles.Size = new System.Drawing.Size(75, 23);
+            this.AddFiles.TabIndex = 0;
+            this.AddFiles.Text = "Add files";
+            this.toolTip.SetToolTip(this.AddFiles, "Add files for analysis");
+            this.AddFiles.UseVisualStyleBackColor = true;
+            this.AddFiles.Click += new System.EventHandler(this.AddFilesClick);
             // 
-            // btnRemoveFile
+            // RemoveFile
             // 
-            this.btnRemoveFile.Location = new System.Drawing.Point(90, 6);
-            this.btnRemoveFile.Name = "btnRemoveFile";
-            this.btnRemoveFile.Size = new System.Drawing.Size(75, 23);
-            this.btnRemoveFile.TabIndex = 1;
-            this.btnRemoveFile.Text = "Remove file";
-            this.toolTip.SetToolTip(this.btnRemoveFile, "Remove selected files from the list");
-            this.btnRemoveFile.UseVisualStyleBackColor = true;
-            this.btnRemoveFile.Click += new System.EventHandler(this.btnRemoveFileClick);
+            this.RemoveFile.Location = new System.Drawing.Point(90, 6);
+            this.RemoveFile.Name = "RemoveFile";
+            this.RemoveFile.Size = new System.Drawing.Size(75, 23);
+            this.RemoveFile.TabIndex = 1;
+            this.RemoveFile.Text = "Remove file";
+            this.toolTip.SetToolTip(this.RemoveFile, "Remove selected files from the list");
+            this.RemoveFile.UseVisualStyleBackColor = true;
+            this.RemoveFile.Click += new System.EventHandler(this.RemoveFileClick);
             // 
-            // btnClearList
+            // ClearList
             // 
-            this.btnClearList.Location = new System.Drawing.Point(171, 6);
-            this.btnClearList.Name = "btnClearList";
-            this.btnClearList.Size = new System.Drawing.Size(75, 23);
-            this.btnClearList.TabIndex = 2;
-            this.btnClearList.Text = "Clear filelist";
-            this.toolTip.SetToolTip(this.btnClearList, "Clear the list of files");
-            this.btnClearList.UseVisualStyleBackColor = true;
-            this.btnClearList.Click += new System.EventHandler(this.btnClearListClick);
+            this.ClearList.Location = new System.Drawing.Point(171, 6);
+            this.ClearList.Name = "btnClearList";
+            this.ClearList.Size = new System.Drawing.Size(75, 23);
+            this.ClearList.TabIndex = 2;
+            this.ClearList.Text = "Clear filelist";
+            this.toolTip.SetToolTip(this.ClearList, "Clear the list of files");
+            this.ClearList.UseVisualStyleBackColor = true;
+            this.ClearList.Click += new System.EventHandler(this.ClearListClick);
             // 
-            // lbxFiles
+            // FileList
             // 
-            this.lbxFiles.FormattingEnabled = true;
-            this.lbxFiles.HorizontalScrollbar = true;
-            this.lbxFiles.Location = new System.Drawing.Point(9, 35);
-            this.lbxFiles.Name = "lbxFiles";
-            this.lbxFiles.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lbxFiles.Size = new System.Drawing.Size(462, 186);
-            this.lbxFiles.TabIndex = 3;
-            this.toolTip.SetToolTip(this.lbxFiles, "Files for analysis");
+            this.FileList.FormattingEnabled = true;
+            this.FileList.HorizontalScrollbar = true;
+            this.FileList.Location = new System.Drawing.Point(9, 35);
+            this.FileList.Name = "FileList";
+            this.FileList.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.FileList.Size = new System.Drawing.Size(462, 186);
+            this.FileList.TabIndex = 3;
+            this.toolTip.SetToolTip(this.FileList, "Files for analysis");
             // 
-            // lblDetectMode
+            // DetectModeLabel
             // 
-            this.lblDetectMode.AutoSize = true;
-            this.lblDetectMode.Location = new System.Drawing.Point(6, 231);
-            this.lblDetectMode.Name = "lblDetectMode";
-            this.lblDetectMode.Size = new System.Drawing.Size(71, 13);
-            this.lblDetectMode.TabIndex = 4;
-            this.lblDetectMode.Text = "Detect mode:";
-            this.lblDetectMode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.DetectModeLabel.AutoSize = true;
+            this.DetectModeLabel.Location = new System.Drawing.Point(6, 231);
+            this.DetectModeLabel.Name = "lblDetectMode";
+            this.DetectModeLabel.Size = new System.Drawing.Size(71, 13);
+            this.DetectModeLabel.TabIndex = 4;
+            this.DetectModeLabel.Text = "Detect mode:";
+            this.DetectModeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // nudDetectMode
+            // DetectMode
             // 
-            this.nudDetectMode.Location = new System.Drawing.Point(79, 229);
-            this.nudDetectMode.Maximum = new decimal(new int[] { 40, 0, 0, 0 });
-            this.nudDetectMode.Name = "nudDetectMode";
-            this.nudDetectMode.Size = new System.Drawing.Size(55, 20);
-            this.nudDetectMode.TabIndex = 5;
-            this.toolTip.SetToolTip(this.nudDetectMode, "0 - slow and most accurate\n40 - fast, but less accurate");
+            this.DetectMode.Location = new System.Drawing.Point(79, 229);
+            this.DetectMode.Maximum = new decimal(new int[] { 40, 0, 0, 0 });
+            this.DetectMode.Name = "nudDetectMode";
+            this.DetectMode.Size = new System.Drawing.Size(55, 20);
+            this.DetectMode.TabIndex = 5;
+            this.toolTip.SetToolTip(this.DetectMode, "0 - slow and most accurate\n40 - fast, but less accurate");
             // 
-            // btnStart
+            // Start
             // 
-            this.btnStart.Location = new System.Drawing.Point(140, 228);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(75, 23);
-            this.btnStart.TabIndex = 6;
-            this.btnStart.Text = "Start";
-            this.toolTip.SetToolTip(this.btnStart, "Starts/Stops the file analysis process");
-            this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStartClick);
+            this.Start.Location = new System.Drawing.Point(140, 228);
+            this.Start.Name = "Start";
+            this.Start.Size = new System.Drawing.Size(75, 23);
+            this.Start.TabIndex = 6;
+            this.Start.Text = "Start";
+            this.toolTip.SetToolTip(this.Start, "Starts/Stops the file analysis process");
+            this.Start.UseVisualStyleBackColor = true;
+            this.Start.Click += new System.EventHandler(this.StartClick);
             // 
-            // rtbOutput
+            // Output
             // 
-            this.rtbOutput.CausesValidation = false;
-            this.rtbOutput.Location = new System.Drawing.Point(9, 255);
-            this.rtbOutput.Name = "rtbOutput";
-            this.rtbOutput.ReadOnly = true;
-            this.rtbOutput.Size = new System.Drawing.Size(465, 128);
-            this.rtbOutput.TabIndex = 7;
-            this.rtbOutput.Text = "";
-            this.toolTip.SetToolTip(this.rtbOutput, "The results of the analysis");
-            this.rtbOutput.WordWrap = false;
+            this.Output.CausesValidation = false;
+            this.Output.Location = new System.Drawing.Point(9, 255);
+            this.Output.Name = "Output";
+            this.Output.ReadOnly = true;
+            this.Output.Size = new System.Drawing.Size(465, 128);
+            this.Output.TabIndex = 7;
+            this.Output.Text = "";
+            this.toolTip.SetToolTip(this.Output, "The results of the analysis");
+            this.Output.WordWrap = false;
             // 
             // btnHelp
             // 
-            this.btnHelp.Location = new System.Drawing.Point(9, 389);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(75, 23);
-            this.btnHelp.TabIndex = 8;
-            this.btnHelp.Text = "Help";
-            this.toolTip.SetToolTip(this.btnHelp, "Display help information");
-            this.btnHelp.UseVisualStyleBackColor = true;
-            this.btnHelp.Click += new System.EventHandler(this.btnHelpClick);
+            this.Help.Location = new System.Drawing.Point(9, 389);
+            this.Help.Name = "Help";
+            this.Help.Size = new System.Drawing.Size(75, 23);
+            this.Help.TabIndex = 8;
+            this.Help.Text = "Help";
+            this.toolTip.SetToolTip(this.Help, "Display help information");
+            this.Help.UseVisualStyleBackColor = true;
+            this.Help.Click += new System.EventHandler(this.HelpClick);
             // 
-            // btnAbout
+            // About
             // 
-            this.btnAbout.Location = new System.Drawing.Point(90, 389);
-            this.btnAbout.Name = "btnAbout";
-            this.btnAbout.Size = new System.Drawing.Size(75, 23);
-            this.btnAbout.TabIndex = 9;
-            this.btnAbout.Text = "About";
-            this.toolTip.SetToolTip(this.btnAbout, "Display information about program");
-            this.btnAbout.UseVisualStyleBackColor = true;
-            this.btnAbout.Click += new System.EventHandler(this.btnAboutClick);
+            this.About.Location = new System.Drawing.Point(90, 389);
+            this.About.Name = "About";
+            this.About.Size = new System.Drawing.Size(75, 23);
+            this.About.TabIndex = 9;
+            this.About.Text = "About";
+            this.toolTip.SetToolTip(this.About, "Display information about program");
+            this.About.UseVisualStyleBackColor = true;
+            this.About.Click += new System.EventHandler(this.AboutClick);
             // 
-            // btnExit
+            // Exit
             // 
-            this.btnExit.Location = new System.Drawing.Point(399, 389);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(75, 23);
-            this.btnExit.TabIndex = 10;
-            this.btnExit.Text = "Exit";
-            this.toolTip.SetToolTip(this.btnExit, "Exit program");
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExitClick);
+            this.Exit.Location = new System.Drawing.Point(399, 389);
+            this.Exit.Name = "Exit";
+            this.Exit.Size = new System.Drawing.Size(75, 23);
+            this.Exit.TabIndex = 10;
+            this.Exit.Text = "Exit";
+            this.toolTip.SetToolTip(this.Exit, "Exit program");
+            this.Exit.UseVisualStyleBackColor = true;
+            this.Exit.Click += new System.EventHandler(this.ExitClick);
             // 
             // openFileDialog
             // 
@@ -179,9 +179,9 @@ namespace auCDtect_Frontend
             // 
             this.backgroundWorker.WorkerReportsProgress = true;
             this.backgroundWorker.WorkerSupportsCancellation = true;
-            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerDoWork);
-            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerProgressChanged);
-            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerRunWorkerCompleted);
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorkerDoWork);
+            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorkerProgressChanged);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorkerRunWorkerCompleted);
             // 
             // MainForm
             // 
@@ -189,26 +189,26 @@ namespace auCDtect_Frontend
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(483, 418);
-            this.Controls.Add(this.btnAddFiles);
-            this.Controls.Add(this.btnRemoveFile);
-            this.Controls.Add(this.btnClearList);
-            this.Controls.Add(this.lbxFiles);
-            this.Controls.Add(this.lblDetectMode);
-            this.Controls.Add(this.nudDetectMode);
-            this.Controls.Add(this.btnStart);
-            this.Controls.Add(this.rtbOutput);
-            this.Controls.Add(this.btnHelp);
-            this.Controls.Add(this.btnAbout);
-            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.AddFiles);
+            this.Controls.Add(this.RemoveFile);
+            this.Controls.Add(this.ClearList);
+            this.Controls.Add(this.FileList);
+            this.Controls.Add(this.DetectModeLabel);
+            this.Controls.Add(this.DetectMode);
+            this.Controls.Add(this.Start);
+            this.Controls.Add(this.Output);
+            this.Controls.Add(this.Help);
+            this.Controls.Add(this.About);
+            this.Controls.Add(this.Exit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "auCDtect-Frontend";
             this.Load += new System.EventHandler(this.MainFormLoad);
-            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.lbxFilesDragDrop);
-            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.lbxFilesDragEnter);
-            ((System.ComponentModel.ISupportInitialize)(this.nudDetectMode)).EndInit();
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.FilesDragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.FilesDragEnter);
+            ((System.ComponentModel.ISupportInitialize)(this.DetectMode)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,17 +217,17 @@ namespace auCDtect_Frontend
         #endregion
 
 
-        private System.Windows.Forms.Button btnAddFiles;
-        private System.Windows.Forms.Button btnRemoveFile;
-        private System.Windows.Forms.Button btnClearList;
-        private System.Windows.Forms.ListBox lbxFiles;
-        private System.Windows.Forms.Label lblDetectMode;
-        private System.Windows.Forms.NumericUpDown nudDetectMode;
-        private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.RichTextBox rtbOutput;
-        private System.Windows.Forms.Button btnHelp;
-        private System.Windows.Forms.Button btnAbout;
-        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button AddFiles;
+        private System.Windows.Forms.Button RemoveFile;
+        private System.Windows.Forms.Button ClearList;
+        private System.Windows.Forms.ListBox FileList;
+        private System.Windows.Forms.Label DetectModeLabel;
+        private System.Windows.Forms.NumericUpDown DetectMode;
+        private System.Windows.Forms.Button Start;
+        private System.Windows.Forms.RichTextBox Output;
+        private System.Windows.Forms.Button Help;
+        private System.Windows.Forms.Button About;
+        private System.Windows.Forms.Button Exit;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.ToolTip toolTip;
         private System.ComponentModel.BackgroundWorker backgroundWorker;
