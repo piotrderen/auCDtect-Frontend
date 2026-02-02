@@ -125,7 +125,7 @@ namespace auCDtect_Frontend
 
             if (extentionSupported)
             {
-                FileList.Items.Add(fullFileName);
+                fileList.Items.Add(fullFileName);
             }
         }
 
@@ -151,24 +151,24 @@ namespace auCDtect_Frontend
                 lstbxFiles.Items.Remove(lstbxFiles.SelectedItems[i]);
             }
             */
-            while (FileList.SelectedItems.Count > 0)
+            while (fileList.SelectedItems.Count > 0)
             {
-                FileList.Items.Remove(FileList.SelectedItems[0]);
+                fileList.Items.Remove(fileList.SelectedItems[0]);
             }
         }
 
         private void ClearListClick(object sender, EventArgs e)
         {
-            FileList.Items.Clear();
+            fileList.Items.Clear();
         }
 
         private void StartClick(object sender, EventArgs e)
         {
-            if (Start.Text == "Start")
+            if (start.Text == "Start")
             {
-                Output.Clear();
+                output.Clear();
                 SetEnabledControls(false);
-                Start.Text = "Stop";
+                start.Text = "Stop";
                 backgroundWorker.RunWorkerAsync();
             }
             else // Start.Text == "Stop"
@@ -179,14 +179,14 @@ namespace auCDtect_Frontend
 
         private void SetEnabledControls(bool enabled)
         {
-            AddFiles.Enabled = enabled;
-            RemoveFile.Enabled = enabled;
-            ClearList.Enabled = enabled;
-            Help.Enabled = enabled;
-            About.Enabled = enabled;
-            Exit.Enabled = enabled;
-            DetectMode.Enabled = enabled;
-            Output.Enabled = enabled;
+            addFiles.Enabled = enabled;
+            removeFile.Enabled = enabled;
+            clearList.Enabled = enabled;
+            help.Enabled = enabled;
+            about.Enabled = enabled;
+            exit.Enabled = enabled;
+            detectMode.Enabled = enabled;
+            output.Enabled = enabled;
         }
 
         private void ApendResultToOutput(AnalyzeResult result)
@@ -194,14 +194,14 @@ namespace auCDtect_Frontend
             string text = result.FormatResult();
             Color color = result.TextColor;
 
-            Output.SuspendLayout();
+            output.SuspendLayout();
             Action action = () => {
-                Output.SelectionColor = color;
-                Output.AppendText(text);
-                Output.ScrollToCaret();
+                output.SelectionColor = color;
+                output.AppendText(text);
+                output.ScrollToCaret();
             };
             this.BeginInvoke(action);  
-            Output.ResumeLayout();   
+            output.ResumeLayout();   
         }
 
         private static AnalyzeResult AnalyzeFile(int detectMode, string fileName)
@@ -322,8 +322,8 @@ namespace auCDtect_Frontend
         private void BackgroundOperation()
         {
             string fullFileName;
-            int count = FileList.Items.Count;
-            int detectMode = (int)DetectMode.Value;
+            int count = fileList.Items.Count;
+            int mode = (int)detectMode.Value;
             AnalyzeResult result;
             string userState;
                                     
@@ -334,8 +334,8 @@ namespace auCDtect_Frontend
                 // Raises backgroundWorkerProgressChanged Event
                 backgroundWorker.ReportProgress((i*100)/count, userState);
 
-                fullFileName = (string)FileList.Items[i];
-                result = AnalyzeFile(detectMode, fullFileName);
+                fullFileName = (string)fileList.Items[i];
+                result = AnalyzeFile(mode, fullFileName);
 
                 ApendResultToOutput(result);         
             }
@@ -383,7 +383,7 @@ namespace auCDtect_Frontend
             }
 
             SetEnabledControls(true);
-            Start.Text = "Start";
+            start.Text = "Start";
 
             this.Text = programName + " - " + status;
         }
