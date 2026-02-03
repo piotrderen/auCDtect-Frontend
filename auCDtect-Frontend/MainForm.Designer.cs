@@ -101,7 +101,7 @@ namespace auCDtect_Frontend
             this.detectModeLabel.Text = "Detect mode:";
             this.detectModeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // DetectMode
+            // detectMode
             // 
             this.detectMode.Location = new System.Drawing.Point(79, 229);
             this.detectMode.Maximum = new decimal(new int[] { 40, 0, 0, 0 });
