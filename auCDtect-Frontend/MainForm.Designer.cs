@@ -80,7 +80,7 @@ namespace auCDtect_Frontend
             this.clearList.UseVisualStyleBackColor = true;
             this.clearList.Click += new System.EventHandler(this.ClearListClick);
             // 
-            // FileList
+            // fileList
             // 
             this.fileList.FormattingEnabled = true;
             this.fileList.HorizontalScrollbar = true;
@@ -95,7 +95,7 @@ namespace auCDtect_Frontend
             // 
             this.detectModeLabel.AutoSize = true;
             this.detectModeLabel.Location = new System.Drawing.Point(6, 231);
-            this.detectModeLabel.Name = "DetectModeLabel";
+            this.detectModeLabel.Name = "detectModeLabel";
             this.detectModeLabel.Size = new System.Drawing.Size(71, 13);
             this.detectModeLabel.TabIndex = 4;
             this.detectModeLabel.Text = "Detect mode:";
@@ -105,7 +105,7 @@ namespace auCDtect_Frontend
             // 
             this.detectMode.Location = new System.Drawing.Point(79, 229);
             this.detectMode.Maximum = new decimal(new int[] { 40, 0, 0, 0 });
-            this.detectMode.Name = "DetectMode";
+            this.detectMode.Name = "detectMode";
             this.detectMode.Size = new System.Drawing.Size(55, 20);
             this.detectMode.TabIndex = 5;
             this.toolTip.SetToolTip(this.detectMode, "0 - slow and most accurate\n40 - fast, but less accurate");
@@ -125,7 +125,7 @@ namespace auCDtect_Frontend
             // 
             this.output.CausesValidation = false;
             this.output.Location = new System.Drawing.Point(9, 255);
-            this.output.Name = "Output";
+            this.output.Name = "output";
             this.output.ReadOnly = true;
             this.output.Size = new System.Drawing.Size(465, 128);
             this.output.TabIndex = 7;
@@ -158,7 +158,7 @@ namespace auCDtect_Frontend
             // exit
             // 
             this.exit.Location = new System.Drawing.Point(399, 389);
-            this.exit.Name = "Exit";
+            this.exit.Name = "exit";
             this.exit.Size = new System.Drawing.Size(75, 23);
             this.exit.TabIndex = 10;
             this.exit.Text = "Exit";
